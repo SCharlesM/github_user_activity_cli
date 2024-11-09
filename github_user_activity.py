@@ -5,8 +5,8 @@ Beginner project from Roadmap.sh
 
 A simple project to fetch the recent activity of a GitHub user and display in terminal
 """
-<<<<<<< HEAD
-import sys, requests
+import sys
+import requests
 
 def main():
     
@@ -20,13 +20,27 @@ def main():
         print('username: ', username)
 
     #set the access token
-    access_token = 'YOUR_API_TOKEN'
+    #access_token = 'YOUR_API_TOKEN'
 
     #set the api endpoint
-    url = 'https://api.github.com/users/<username>/events'
+    url = f'https://api.github.com/users/{username}/events'
     #edit this to add username....
+    #print('this is the url: https://api.github.com/users/',username,'/events')
 
-    #send the requests.get()
+    #send the GET request
+    response = requests.get(url, timeout = 10)
+    
+    print(response)
+
+    #check the response status code
+    if response.status_code == 200:
+        #parse the JSON response
+        events = response.json()
+        #print each event type and created at time
+        for event in events:
+            print(f"Event: {event['type']}")
+    else :
+        print(f'Error: {response.status_code}')
 
     #deal with the returned status code....
 
@@ -34,5 +48,3 @@ def main():
 
 if __name__ == "__main__" :
     main()
-=======
->>>>>>> 7555182a377f3ec5b43792901ddf723c6b691e80
