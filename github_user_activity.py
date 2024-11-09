@@ -5,6 +5,7 @@ Beginner project from Roadmap.sh
 
 A simple project to fetch the recent activity of a GitHub user and display in terminal
 """
+<<<<<<< HEAD
 import sys, requests
 
 def main():
@@ -33,3 +34,5 @@ def main():
 
 if __name__ == "__main__" :
     main()
+=======
+>>>>>>> 7555182a377f3ec5b43792901ddf723c6b691e80
