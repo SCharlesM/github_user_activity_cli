@@ -9,7 +9,8 @@ import sys
 import requests
 
 def main():
-    
+    """main function, taking the github username as the argument and printing the user activity"""
+
     #if length of sys.argv is 0, say its too short...
     if len(sys.argv) < 2 :
         print('no arguments provided, please add a github username as an argument')
@@ -29,16 +30,20 @@ def main():
 
     #send the GET request
     response = requests.get(url, timeout = 10)
-    
+
     print(response)
 
     #check the response status code
     if response.status_code == 200:
         #parse the JSON response
         events = response.json()
+
         #print each event type and created at time
-        for event in events:
+        for index, event in enumerate(events):
+            if index > 4:
+                break
             print(f"Event: {event['type']}")
+
     else :
         print(f'Error: {response.status_code}')
 
